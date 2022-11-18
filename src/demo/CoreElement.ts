@@ -40,9 +40,10 @@ namespace coreElement {
             document.addEventListener("keyup", this._keyHandler);
             const onTouchMove = egret.sys.TouchHandler.prototype.onTouchMove;
 
-            egret.sys.TouchHandler.prototype.onTouchMove = function (this: any, x: number, y: number, touchPointID: number): void {
+            egret.sys.TouchHandler.prototype.onTouchMove = function (this: any, x: number, y: number, touchPointID: number): boolean {
                 onTouchMove.call(this, x, y, touchPointID);
                 Game.instance._player.aim(x - Game.instance.x, y - Game.instance.y);
+                return false;
             };
             //
             this.createText("Press W/A/S/D to move. Press Q/E/SPACE to switch weapons and skin. Touch to aim and fire.");

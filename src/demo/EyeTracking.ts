@@ -53,9 +53,10 @@ class EyeTracking extends BaseDemo {
 
         const onTouchMove = egret.sys.TouchHandler.prototype.onTouchMove;
         const setTarget = this._setTarget.bind(this);
-        egret.sys.TouchHandler.prototype.onTouchMove = function (this: any, x: number, y: number, touchPointID: number): void {
+        egret.sys.TouchHandler.prototype.onTouchMove = function (this: any, x: number, y: number, touchPointID: number): boolean {
             onTouchMove.call(this, x, y, touchPointID);
             setTarget(x, y);
+            return false;
         };
         this.stage.addEventListener(egret.Event.ENTER_FRAME, this._enterFrameHandler, this);
     }

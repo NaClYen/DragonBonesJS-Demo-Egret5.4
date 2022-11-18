@@ -54,10 +54,11 @@ class InverseKinematics extends BaseDemo {
         //
         const onTouchMove = egret.sys.TouchHandler.prototype.onTouchMove;
         const self = this;
-        egret.sys.TouchHandler.prototype.onTouchMove = function (this: any, x: number, y: number, touchPointID: number): void {
+        egret.sys.TouchHandler.prototype.onTouchMove = function (this: any, x: number, y: number, touchPointID: number): boolean {
             onTouchMove.call(this, x, y, touchPointID);
             self._target.x = x - self.x;
             self._target.y = y - self.y;
+            return false;
         };
         this.addEventListener(egret.Event.ENTER_FRAME, this._enterFrameHandler, this);
         //
